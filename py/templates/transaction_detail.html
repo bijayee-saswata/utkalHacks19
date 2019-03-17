@@ -1,0 +1,79 @@
+{% extends 'layout.html' %} {% block body %}
+<style>
+.col-md-9 td{
+  padding: 1%;
+}
+.col-md-3 td{
+  padding: 1%;
+}
+</style>
+<div>
+  <div class="wrap">
+    <div class="search">
+      <form action="http://127.0.0.1:5000/transaction" method="post">
+        
+        <input
+            id="searchTerm"
+            type="text"
+            class="searchTerm"
+            name="date"
+            placeholder="Search previous ransactions..."
+        />
+        
+        <button type="submit" class="searchButton">
+                <i class="fa fa-search"></i></button>
+    </form>
+    </div>
+  </div>
+  <div class="todayTransactions">
+    <h2>Transactions</h2>
+    <div class="row">
+      <div class="col-md-9">
+        <table style="width:100%">
+          <tr>
+            <th>Transaction Id</th>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Location</th>
+            <th>Amount</th>
+          </tr>
+          
+            {% for id,date,name,email,location,amount in result %}
+                <tr>
+                        <td>{{ id }}</td>
+                        <td>{{date}}</td>
+                        <td>{{name}}</td>
+                        <td>{{email}}</td>
+                        <td>{{location}}</td>
+                        <td>{{amount}}</td>
+                </tr>
+                {% endfor %}  
+        </table>
+      </div>
+      <div class="col-md-3">
+        <table style="width:100%;">
+          <tr>
+            <th>Prediction</th>
+          </tr>
+            {% for item in predicted %}
+            <tr>
+              <td>{% if item %}
+                  <button class="btn btn-danger"> *Fraud Transaction* </button>
+                  {% endif %}
+                  {% if not item %}
+                  <button class="btn btn-success">Genuine Transaction</button>
+                  {% endif %}
+              </td>
+            </tr>
+               
+            {% endfor %}
+        </table>
+      </div>
+    </div>
+    
+    
+    <center><button class="btn btn-primary">Predict</button></center>
+  </div>
+</div>
+{% endblock %}

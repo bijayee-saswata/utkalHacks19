@@ -1,0 +1,28 @@
+{% extends 'layout.html' %} {% block body %}
+
+<div>
+  <div class="wrap">
+    <div class="search">
+      
+      <form action="http://127.0.0.1:5000/transaction" method="post">
+        
+            <input
+                id="searchTerm"
+                type="text"
+                class="searchTerm"
+                name="date"
+                placeholder="Search previous ransactions..."
+            />
+            
+            <button type="submit" class="searchButton">
+                    <i class="fa fa-search"></i></button>
+        </form>
+    </div>
+  </div>
+
+
+    <center><button class="btn btn-primary">Predict</button></center>
+
+</div>
+
+{% endblock %}
